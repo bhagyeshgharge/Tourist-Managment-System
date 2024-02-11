@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Package</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin-right: 30px; /* Adjusted margin for better readability */
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Added box-sizing for consistent sizing */
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
+textarea:hover,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+    border-color: #333;
+}
+
+small {
+    color: #888;
+}
+
+button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
+
+    </style>
+</head>
+
+<body>
+    <h1>Add Packages</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <!-- Place -->
+        <label for="place">Place:</label>
+        <input type="text" name="place" required>
+        <br>
+
+
+        <!-- Country -->
+        <label for="country">Country:</label>
+        <input type="text" name="country" required>
+        <br>
+
+
+        <!-- State -->
+        <label for="state">State:</label>
+        <input type="text" name="state" required>
+        <br>
+
+        <!-- price -->
+        <label for="price">Price:</label>
+        <input type="text" name="Price" required>
+        <br>
+
+        <!-- days -->
+        <label for="days">Days:</label>
+        <input type="text" name="day" required>
+        <br>
+
+        <!-- night -->
+        <label for="night">Night:</label>
+        <input type="text" name="night" required>
+        <br>
+
+        <!-- description -->
+        <label for="description">Description:</label>
+        <textarea id="address" name="description" rows="6" cols="60" required></textarea>
+        <br>
+
+        <!-- image -->
+        <label for="image">Image:</label>
+        <input type="file" name="image" required>
+        <br>
+
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+
+</html>

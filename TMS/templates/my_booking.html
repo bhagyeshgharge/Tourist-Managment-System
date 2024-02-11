@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto 0;
+            /* Added margin property */
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>  
+    <!-- Navigation Bar -->
+    <div>
+        {% include 'header.html' %}
+    </div>
+    <!-- Navigation bar End -->
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Place</th>
+                <th>Country</th>
+                <th>Price</th>
+                <th>Total Person</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in book_package %}
+            
+            <tr>
+                <td>{{i.Name}}</td>
+                <td>{{i.Email}}</td>
+                <td>{{i.Phone_No}}</td>
+                <td>{{i.Address}}</td>
+                <td>{{i.Place}}</td>
+                <td>{{i.Country}}</td>
+                <td>{{i.Price}}</td>
+                <td>{{i.Total_Person}}</td>
+                <td>{{i.Total_Price}}</td>
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {% include 'footer.html' %}
+    </div>
+
+
+</body>
+
+</html>

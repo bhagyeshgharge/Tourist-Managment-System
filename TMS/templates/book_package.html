@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Package</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        #book_details {
+            font-family: 'Arial', sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:hover,
+        input[type="email"]:hover,
+        input[type="tel"]:hover,
+        input[type="number"]:hover,
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="number"]:focus {
+            color: #888;
+            border-color: #555;
+        }
+
+        button[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-style: italic;
+            color: #333;
+        }
+
+        #total_price {
+            color: #4caf50;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        span {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div>
+
+        {% include 'header.html' %}
+    </div>
+
+    <!-- Navigation bar End -->
+    <div id="book_details">
+        <form action="" method="post">
+
+            {% for i in package %}
+
+            {% csrf_token %}
+            <!-- First Name -->
+            <label for="first_name">Name</label>
+            <input type="text" id="first_name" name="first_name" required>
+            <br>
+
+            <!-- Email -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+
+            <!-- Phone Number -->
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890" required>
+            <br>
+
+            <!-- Address -->
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+            <br>
+
+            <!-- Place -->
+            <span>
+                <label for="place">Place:</label>
+                <p name="place">{{ i.Place }}</p>
+                <br>
+            </span>
+
+
+            <!-- Country -->
+            <span>
+                <label for="country">Country:</label>
+                <p name="country">{{ i.Country }}</p>
+                <br>
+            </span>
+
+
+            <!-- price -->
+            <span>
+                <label for="price">Price:</label>
+                <p id="price" name="price" style="font-style: italic;">{{ i.Price }}</p>
+                <br>
+            </span>
+
+            <!-- Total Person -->
+            <label for="total_person">Total Person</label>
+            <input type="number" value="{{i.Total_Person}}" id="total_person" name="total_person" required>
+            <br>
+
+            <!-- Total Price -->
+            <label for="total_price">Total Price</label>
+            <input type="number" id="total_price" name="total_price" required>
+            <br>
+
+            <!-- Submit Button -->
+            <a href=""><button type="submit">Submit</button></a>
+            
+
+            {% endfor %}
+        </form>
+    </div>
+
+
+    <div>
+
+        {% include 'footer.html' %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the elements
+            var totalPersonInput = document.getElementById('total_person');
+            var priceElement = document.getElementById('price');
+            var totalPriceInput = document.getElementById('total_price');
+            // Initial total price calculation
+            calculateTotalPrice();
+            // Add an event listener to the total_person input to recalculate the total price on input change
+            totalPersonInput.addEventListener('input', calculateTotalPrice);
+            function calculateTotalPrice() {
+                // Get the values
+                var totalPerson = parseFloat(totalPersonInput.value) || 0;
+                var price = parseFloat(priceElement.textContent) || 0;
+                // Calculate the total price
+                var totalPrice = totalPerson * price;
+                // Update the total_price input field
+                totalPriceInput.value = totalPrice.toFixed(2);
+            }
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>
